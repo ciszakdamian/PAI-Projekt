@@ -16,3 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/katalog_filmow', function () {
+
+    $filmy = App\Filmy::all();
+
+    foreach ($filmy as $film) {
+        echo $film->tytul;
+        echo '</br>';
+        echo $film->kategoria;
+        echo '</br>';
+        echo $film->rok_produkcji;
+        echo '</br>';
+        echo $film->opis_fabuly;
+        echo '</br>';
+        echo $film->cena;
+        echo '</br></br>';
+    }
+
+
+});
