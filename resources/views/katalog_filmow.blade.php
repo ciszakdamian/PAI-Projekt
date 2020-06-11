@@ -40,14 +40,28 @@
 
 <main role="main">
 
-
     <div class="album py-5 bg-light">
         <div class="container">
+            <form method="post" action="{{action('FilmyController@kategorie')}}" role="form">
+                @csrf
+                <div class="form-row align-items-center">
+                    <div class="col-auto my-1">
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Pokaż według kategorii:</label>
+                        <select name='kategoria' class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option value="Wszystkie" selected>Wszystkie</option>
+                            @foreach($katalogKategorie as $kategoria)
+                                <option value="{{ $kategoria->kategoria }}">{{ $kategoria->kategoria }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-auto my-1">
+                        <button type="submit" class="btn btn-primary">Wyświetl</button>
+                    </div>
+                </div>
+            </form>
 
             <div class="row">
                 @foreach($katalogFilmow as $film)
-
-
 
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">

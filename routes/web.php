@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +20,5 @@ Route::get('/', function () {
 
 
 Route::get('/katalog_filmow', 'FilmyController@index');
+Route::post('katalog_filmow', 'FilmyController@kategorie');
+
