@@ -14,6 +14,7 @@ class FilmySeeder extends Seeder
     {
         DB::table('filmy')->insert([
             'tytul' => 'Nietykalni',
+            'okladka' => 'nietykalni.jpg',
             'kategoria' => 'Biograficzny',
             'rok_produkcji' => 2011,
             'opis_fabuly' => 'Ta historia zdarzyła się naprawdę. Sparaliżowany na skutek wypadku milioner zatrudnia do pomocy i opieki młodego chłopaka z przedmieścia, który właśnie wyszedł z więzienia. Zderzenie dwóch skrajnie różnych światów daje początek szeregowi niewiarygodnych przygód i przyjaźni, która czyni ich... nietykalnymi.',
@@ -22,6 +23,7 @@ class FilmySeeder extends Seeder
 
         DB::table('filmy')->insert([
             'tytul' => 'Forrest Gump ',
+            'okladka' => 'forrest_gump.jpg',
             'kategoria' => 'Dramat',
             'rok_produkcji' => 1994,
             'opis_fabuly' => 'Historia życia Forresta, chłopca o niskim ilorazie inteligencji z niedowładem kończyn, który staje się miliarderem i bohaterem wojny w Wietnamie.',
@@ -30,6 +32,7 @@ class FilmySeeder extends Seeder
 
         DB::table('filmy')->insert([
             'tytul' => 'Ojciec Chrzestny II',
+            'okladka' => 'ojciec_chrzestny_2.jpg',
             'kategoria' => 'Dramat',
             'rok_produkcji' => 1974,
             'opis_fabuly' => 'Rok 1917. Młody Vito Corleone stawia pierwsze kroki w mafijnym świecie Nowego Jorku. Ponad 40 lat później jego syn Michael walczy o interesy i dobro rodziny.',
@@ -38,6 +41,7 @@ class FilmySeeder extends Seeder
 
         DB::table('filmy')->insert([
             'tytul' => 'Władca Pierścieni Powrót Króla',
+            'okladka' => 'wladca_pierscieni_powrot_krola.jpg',
             'kategoria' => 'Fantasy',
             'rok_produkcji' => 2003,
             'opis_fabuly' => 'Zwieńczenie filmowej trylogii wg powieści Tolkiena. Aragorn jednoczy siły Śródziemia, szykując się do bitwy, która ma odwrócić uwagę Saurona od podążających w kierunku Góry Przeznaczenia hobbitów',
@@ -46,6 +50,7 @@ class FilmySeeder extends Seeder
 
         DB::table('filmy')->insert([
             'tytul' => 'Milczenie Owiec',
+            'okladka' => 'milczenie_owiec.jpg',
             'kategoria' => 'Thriller',
             'rok_produkcji' => 1991,
             'opis_fabuly' => 'Seryjny morderca i inteligentna agentka łączą siły, by znaleźć przestępcę obdzierającego ze skóry swoje ofiary.',

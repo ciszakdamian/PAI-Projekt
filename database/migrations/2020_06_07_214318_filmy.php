@@ -16,6 +16,7 @@ class Filmy extends Migration
         Schema::create('filmy', function (Blueprint $table) {
             $table->id();
             $table->string('tytul', 255);
+            $table->string('okladka', 255);
             $table->string('kategoria', 255);
             $table->integer('rok_produkcji');
             $table->text('opis_fabuly');
