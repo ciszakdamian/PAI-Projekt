@@ -32,6 +32,142 @@
 </head>
 
 <body>
+    <style>
+        .main-title{
+            color: #777;
+            font-size: 400%;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .movie-title{
+            font-size: 150%;
+            padding: 15px;
+            font-weight: 700;
+            color: #666;
+        }
+        .btn-add, .btn-more{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn-add{
+            color: rgb(146, 146, 146);
+            background-color: #75ccff4b;
+            font-weight: 700;
+        }
+
+        .modal-footer .btn-add{
+            border-color: #555;
+        }
+        .btn-add:hover{
+            background-color: #58b4ff;
+            color: white;
+        }
+
+
+        .modal-footer .btn-more{
+            background-color: #fff;
+            color: #444;
+        }
+
+        .btn-more:hover{
+            background-color: #eeeeee;
+            color: black;
+        }
+
+
+
+        .card-one:hover{
+            box-shadow: #55555549 0px 0px 10px 2px;
+        }
+
+        .card-one{
+            transition: all ease-out 0.2s;
+        }
+        .info-flex{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+        .info-big{
+            font-size: 110%;
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+        .info-big-title{
+            font-size: 120%;
+            font-weight: 700;
+            color: #777;
+        }
+        .info-title-header{
+            font-size: 150%;
+            color: #555;
+        }
+        .info-flex-price{
+            font-size: 120%;
+            font-weight: 700;
+            color: #777;
+        }
+
+        .text-price{
+            font-size: 115%;
+            font-weight: 700;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .small-hr{
+            width: 75%;
+        }
+
+        .form-select{
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 30px;
+            border-color: #ddd;
+            border-width: 1px;
+            border-style: solid;
+            transition: all ease-out 0.2s;
+        }
+
+        .form-select:hover{
+            box-shadow: #55555549 0px 0px 10px 2px;
+        }
+
+        .category-select{
+            font-weight: 700;
+            
+            color: #999;
+        }
+
+        .basket-counter{
+            background-color: #777;
+            border-radius: 50%;
+            min-width: 40px;
+            max-height: 40px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all ease-out 0.2s;
+        }
+
+        .basket-counter:hover{
+            border-radius: 25%;
+        }
+
+        .basket-counter a span{
+            color: #ccc;
+        }
+
+    </style>
+
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
     <!-- Brand/logo -->
@@ -47,7 +183,7 @@
     <!-- Right -->
     <ul class="navbar-nav ml-auto">
         @if($koszykIlosc > 0)
-        <li class="nav-item">
+        <li class="nav-item basket-counter">
             <a href="/koszyk" class="nav-link navbar-link-2 waves-effect">
             <span>
                 {{$koszykIlosc}}</span>
@@ -75,11 +211,14 @@
 <main role="main">
     <div class="album py-5 bg-light">
         <div class="container">
+
+            <p class="main-title">Katalog filmów</p>
+
             <form method="post" action="{{action('FilmyController@kategorie')}}" role="form">
                 @csrf
-                <div class="form-row align-items-center">
+                <div class="form-row align-items-end d-flex justify-content-center form-select">
                     <div class="col-auto my-1">
-                        <label class="mr-sm-2" for="inlineFormCustomSelect">Pokaż według kategorii:</label>
+                        <label class="mr-sm-2 category-select" for="inlineFormCustomSelect">Pokaż według kategorii:</label>
                         <select name='kategoria' class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                             <option value="Wszystkie" selected>Wszystkie</option>
                             @foreach($katalogKategorie as $kategoria)
@@ -96,70 +235,117 @@
             <div class="row">
                 @foreach($katalogFilmow as $film)
 
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                            <h5 class="text-center" class="card-title">{{ $film->tytul }}</h5>
-                            <img class="card-img-top" src="{{ asset('img/okladki_filmow/'.$film->okladka)}}"
-                                 alt="Okladka filmu">
-                            <div class="card-body">
-                                <p class="card-text">
-                                    Rezyser: {{ $film->rezyser }} <br/>
-                                    Rok produkcji: {{ $film->rok_produkcji }} <br/>
-                                    Gatunek: {{ $film->kategoria }} <br/>
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow card-one">
+                        <h5 class="text-center movie-title" class="card-title">{{ $film->tytul }}</h5>
+                        <img class="card-img-top" src="{{ asset('img/okladki_filmow/'.$film->okladka)}}"
+                             alt="Okladka filmu">
+                        <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-right">
+                                <span>Reżyser:</span> <span>{{ $film->rezyser }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-right">
+                                <span>Rok produkcji:</span> <span>{{ $film->rok_produkcji }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-right">
+                                <span>Gatunek:</span> <span>{{ $film->kategoria }}</span>
+                                </div>
 
 
-                                    <img src=>
+                                <hr>
+                            <div class="d-flex flex-column justify-content-between align-items-right">
+                                <small class="text-muted text-price"><p>CENA:</p><p>{{ str_replace(".",",",$film->cena) }} PLN</p></small>
 
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
+                                <div class="btn-group">
 
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"
-                                                data-toggle="modal"
-                                                data-target="#exampleModalCenter{{ $film->id }}">Szczegóły
-                                        </button>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-sm btn-outline-secondary btn-more"
+                                            data-toggle="modal"
+                                            data-target="#exampleModalCenter{{ $film->id }}"><span>Szczegóły</span>
+                                    </button>
 
 
-                                        <a href="{{ 'dodaj_do_koszyka/'.$film->id }}" type="button"
-                                           class="btn btn-sm btn-outline-secondary">Dodaj do
-                                            koszyka
-                                        </a>
-                                    </div>
-                                    <small class="text-muted">{{ $film->cena }} PLN</small>
+                                    <a href="{{ 'dodaj_do_koszyka/'.$film->id }}" type="button"
+                                        class="btn btn-sm btn-outline-secondary btn-add">Dodaj do
+                                         koszyka
+                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+
+
+
+
 
 
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter{{ $film->id }}" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalCenterTitle"
-                         aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">{{ $film->tytul }}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    {{ $film->opis_fabuly }}
+                        aria-labelledby="exampleModalCenterTitle"
+                        aria-hidden="true">
+                       <div class="modal-dialog modal-dialog-centered" role="document">
+                           <div class="modal-content">
+                               <div class="modal-header">
+                                   <h5 class="modal-title info-title-header" id="exampleModalLongTitle">{{ $film->tytul }}</h5>
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                   </button>
+                               </div>
 
-                                </div>
-                                <div class="modal-footer">
+                               <div class="modal-body">
+                                   <div class="info-flex">
+                                       <p>REŻYSER:</p>
+                                       <p>
+                                       {{ $film->rezyser }}
+                                       </p>
+   
+                                   </div>
+                                   <div class="info-flex">
+                                       <p>GATUNEK:</p>
+                                       <p>
+                                       {{ $film->kategoria }}
+                                       </p>
+   
+                                   </div>
+                                   <div class="info-flex">
+                                       <p>ROK PRODUKCJI:</p>
+                                       <p>
+                                       {{ $film->rok_produkcji }}
+                                       </p>
+   
+                                   </div>
+                                   <hr class="small-hr">
 
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Wróć</button>
-                                    <a href="{{ 'dodaj_do_koszyka/'.$film->id }}" type="button" class="btn btn-primary">Dodaj
-                                        do koszyka</a>
+                                   <p class="info-big-title">Fabuła:</p>
+                                   <p class="info-big">
+                                   "{{ $film->opis_fabuly }}"
+                                   </p>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                                   <hr class="small-hr">
+                               <div class="info-flex info-flex-price">
+                                   <p>CENA:</p>
+                                   <p>
+                                   {{ str_replace(".",",",$film->cena) }} PLN
+                                   </p>
+
+                               </div>
+
+                               </div>
+
+                               <div class="modal-footer">
+
+                                   <button type="button" class="btn btn-secondary btn-more" data-dismiss="modal">Wróc</button>
+                                   <a href="{{ 'dodaj_do_koszyka/'.$film->id }}" type="button" class="btn btn-primary btn-add">Dodaj
+                                    do koszyka</a>
+
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
 
                 @endforeach
 

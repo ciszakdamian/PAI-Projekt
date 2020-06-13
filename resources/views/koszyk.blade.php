@@ -55,6 +55,194 @@
 
 <body>
 
+
+    <style>
+        .main-title{
+            color: #777;
+            font-size: 400%;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .movie-title{
+            font-size: 150%;
+            padding: 15px;
+            font-weight: 700;
+            color: #666;
+        }
+        .btn-add, .btn-more{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn-add{
+            color: rgb(146, 146, 146);
+            background-color: #32b152;
+            font-weight: 700;
+        }
+
+        .modal-footer .btn-add{
+            border-color: rgb(136, 134, 134);
+        }
+        .btn-add:hover{
+            background-color: #4ad36c;
+            color: white;
+            border-color: #32b152;
+        }
+
+        .btn-add > i{
+            transition: all ease-out 0.3s;
+        }
+
+        .btn-add:hover > i{
+            margin-left: 10px;
+        }
+
+
+        .modal-footer .btn-more{
+            background-color: #fff;
+            color: #444;
+        }
+
+        .btn-more:hover{
+            background-color: #eeeeee;
+            color: black;
+        }
+
+        .btn-more > i{
+            transition: all ease-out 0.3s;
+        }
+        .btn-more:hover > i{
+            margin-right: 10px;
+        }
+
+
+
+        .card-one:hover{
+            box-shadow: #55555549 0px 0px 10px 2px;
+        }
+
+        .card-one{
+            transition: all ease-out 0.2s;
+        }
+        .info-flex{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+        .info-big{
+            font-size: 110%;
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+        .info-big-title{
+            font-size: 120%;
+            font-weight: 700;
+            color: #777;
+        }
+        .info-title-header{
+            font-size: 150%;
+            color: #555;
+        }
+        .info-flex-price{
+            font-size: 120%;
+            font-weight: 700;
+            color: #777;
+        }
+
+        .text-price{
+            font-size: 115%;
+            font-weight: 700;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .small-hr{
+            width: 75%;
+        }
+
+        .form-select{
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 30px;
+            border-color: #ddd;
+            border-width: 1px;
+            border-style: solid;
+            transition: all ease-out 0.2s;
+        }
+
+        .form-select:hover{
+            box-shadow: #55555549 0px 0px 10px 2px;
+        }
+
+        .category-select{
+            font-weight: 700;
+            
+            color: #999;
+        }
+
+        .btn-back{
+            max-width: 80px;
+            background-color: #fff;
+            color: #777!important;
+            border-color: #777;
+        }
+
+        .btn-back:hover{
+            border-color: #000;
+        }
+
+        .btn-pay{
+            max-width: 100px;
+            width: 100px;
+            border-color: #777;
+            color: white;
+        }
+
+        .btn-pay:hover{
+            border-color: #000;
+        }
+
+        .item-price{
+            font-weight: 700;
+            color: #777;
+        }
+
+        .empty-error{
+            font-size: 120%;
+            font-weight: 400;
+            color: #777;
+            margin-top: 15px;
+        }
+
+        .item-title{
+            font-weight: 700;
+            color: #777;
+            margin-top: 7px;
+        }
+
+        .btn-delete{
+            background-color: #ddd;
+            border-color: #777;
+        }
+
+        .btn-delete > i{
+            color: #777;
+            transition: all ease-out 0.4s;
+        }
+
+        .btn-delete:hover > i{
+            color: white;
+            transform: rotateZ(180deg);
+        }
+
+    </style>
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="/">PAI PROJEKT</a>
@@ -88,6 +276,7 @@
 
 <main role="main">
     <div class="container main-section">
+        <p class="main-title">Koszyk</p>
         <div class="row">
             <div class="col-lg-12 pb-2">
                 <h4>Lista wybranych filmów: </h4>
@@ -97,13 +286,13 @@
                 <table class="table table-hover border bg-white">
                     <thead>
                     <tr>
-                        <th>Filmy</th>
+                        <th>Film</th>
                         <th>Cena</th>
-                        <th>Usun</th>
+                        <th style="text-align: center">Usuń</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @if ($koszykPusty == 0)
+                    @if (count($koszykLista) > 0) 
                         @foreach($koszykLista as $film)
                             @foreach($film as $f)
                                 <tr>
@@ -115,29 +304,37 @@
                                                      class="img-responsive"/>
                                             </div>
                                             <div class="col-lg-10">
-                                                <h4 class="nomargin">{{$f->tytul}}</h4>
+                                                <h4 class="nomargin item-title">{{$f->tytul}}</h4>
                                                 <p>{{$f->opis_fabuly}}</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{$f->cena}}</td>
-                                    <td class="actions" data-th="" style="width:10%;">
-                                        <a href="{{ 'usun_z_koszyka/'.$f->id }}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                                    <td class="item-price">{{str_replace(".",",",$f->cena)}} PLN</td>
+                                    <td class="actions d-flex justify-content-center" data-th="">
+                                        <a href="{{ 'usun_z_koszyka/'.$f->id }}" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
                         @endforeach
+                    @else
+                    <tr>
+                        <td colspan="1" style="width: 80%;">
+
+                                <p class="empty-error">Brak filmów w koszyku</p>
+
+                            </td>
+                            <td colspan="2">
+                            </td>
+                        </tr>
                     @endif
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td><a href="katalog_filmow" class="btn btn-warning text-white"><i
-                                    class="fa fa-angle-left"></i>
-                                Dodaj filmy</a></td>
-                        <td colspan="2" class="hidden-xs"></td>
-                        <td class="hidden-xs text-center" style="width:10%;"><strong>Suma: {{ $koszykSuma }} </strong>
+                        <td><a href="katalog_filmow" class="btn btn-warning text-white btn-more btn-back"><i
+                                    class="fa fa-angle-left"></i>&nbsp;Wróć</a></td>
+                        <td class="hidden-xs text-center" style="width:10%;"><strong>Suma:<br>{{ str_replace(".",",",$koszykSuma) }} PLN</strong>
                         </td>
-                        <td><a href="#" class="btn btn-success btn-block">Kupuje <i class="fa fa-angle-right"></i></a>
+                        <td><a href="#" class="btn btn-success btn-block btn-add btn-pay">Zapłać&nbsp;<i class="fa fa-angle-right"></i></a>
                         </td>
                     </tr>
                     </tfoot>

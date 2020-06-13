@@ -95,7 +95,7 @@ class FilmySeeder extends Seeder
         DB::table('filmy')->insert([
             'tytul' => 'Titanic',
             'okladka' => 'titanic.jpg',
-            'kategoria' => 'Horror',
+            'kategoria' => 'Thriller',
             'rezyser' => 'James Cameron',
             'rok_produkcji' => 1997,
             'opis_fabuly' => 'Rok 1912, brytyjski statek Titanic wyrusza w swój dziewiczy rejs do USA. Na pokładzie emigrant Jack przypadkowo spotyka arystokratkę Rose.',
