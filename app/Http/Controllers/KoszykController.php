@@ -32,7 +32,6 @@ class KoszykController extends Controller
                 array_push($koszyk_filmy, $film_id);
                 session()->put('koszyk', $koszyk_filmy);
             }
-            print_r($koszyk_filmy);
         }
 
         return redirect('katalog_filmow');
