@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="modal-footer">
 
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Wróc</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Wróć</button>
                                     <a href="{{ 'dodaj_do_koszyka/'.$film->id }}" type="button" class="btn btn-primary">Dodaj
                                         do koszyka</a>
 
