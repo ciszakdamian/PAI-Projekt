@@ -28,18 +28,43 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="album.css" rel="stylesheet">
 </head>
 
 <body>
 
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="/">PAI PROJEKT</a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="katalog_filmow">Katalog filmow</a>
+        </li>
+    </ul>
+
+    <!-- Right -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a href="/koszyk" class="nav-link navbar-link-2 waves-effect">
+                <svg class="bi bi-basket" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M10.243 1.071a.5.5 0 0 1 .686.172l3 5a.5.5 0 1 1-.858.514l-3-5a.5.5 0 0 1 .172-.686zm-4.486 0a.5.5 0 0 0-.686.172l-3 5a.5.5 0 1 0 .858.514l3-5a.5.5 0 0 0-.172-.686z"/>
+                    <path fill-rule="evenodd"
+                          d="M1 7v1h14V7H1zM.5 6a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5H.5z"/>
+                    <path fill-rule="evenodd"
+                          d="M14 9H2v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9zM2 8a1 1 0 0 0-1 1v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9a1 1 0 0 0-1-1H2z"/>
+                    <path fill-rule="evenodd"
+                          d="M4 10a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 1 1-1 0v-3a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+            </a>
+        </li>
+    </ul>
+</nav>
 
 <main role="main">
-
     <div class="album py-5 bg-light">
         <div class="container">
             <form method="post" action="{{action('FilmyController@kategorie')}}" role="form">
@@ -88,9 +113,10 @@
                                         </button>
 
 
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Dodaj do
+                                        <a href="{{ 'dodaj_do_koszyka/'.$film->id }}" type="button"
+                                           class="btn btn-sm btn-outline-secondary">Dodaj do
                                             koszyka
-                                        </button>
+                                        </a>
                                     </div>
                                     <small class="text-muted">{{ $film->cena }} PLN</small>
                                 </div>
@@ -119,15 +145,13 @@
                                 <div class="modal-footer">
 
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Wróc</button>
-                                    <button type="button" class="btn btn-primary">Dodaj do koszyka</button>
+                                    <a href="{{ 'dodaj_do_koszyka/'.$film->id }}" type="button" class="btn btn-primary">Dodaj
+                                        do koszyka</a>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-
 
                 @endforeach
 
@@ -147,10 +171,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script src="../../assets/js/vendor/popper.min.js"></script>
-<script src="../../dist/js/bootstrap.min.js"></script>
-<script src="../../assets/js/vendor/holder.min.js"></script>
+
 </body>
 </html>
 

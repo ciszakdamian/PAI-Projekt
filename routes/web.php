@@ -19,6 +19,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('/katalog_filmow', 'FilmyController@index');
+Route::get('katalog_filmow', 'FilmyController@index');
 Route::post('katalog_filmow', 'FilmyController@kategorie');
+
+Route::get('dodaj_do_koszyka/{id}', 'KoszykController@dodaj');
+Route::get('koszyk', 'KoszykController@koszyk');
+Route::get('usun_z_koszyka/{id}', 'KoszykController@usun');
 
