@@ -46,6 +46,14 @@
 
     <!-- Right -->
     <ul class="navbar-nav ml-auto">
+        @if($koszykIlosc > 0)
+        <li class="nav-item">
+            <a href="/koszyk" class="nav-link navbar-link-2 waves-effect">
+            <span>
+                {{$koszykIlosc}}</span>
+            </a>
+        </li>
+        @endif
         <li class="nav-item">
             <a href="/koszyk" class="nav-link navbar-link-2 waves-effect">
                 <svg class="bi bi-basket" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"

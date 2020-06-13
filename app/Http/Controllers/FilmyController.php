@@ -8,13 +8,21 @@ use App;
 
 class FilmyController extends Controller
 {
+    private function koszyk_zliczanie(){
+        if (session()->exists('koszyk')) {
+            $koszyk_filmy = session()->get('koszyk');
+            return count($koszyk_filmy);
+        }
+    }
 
     public function index()
     {
         $filmy = App\Filmy::all();
         $kategorie = App\Filmy::orderBy('kategoria', 'asc')->groupBy('kategoria')->get('kategoria');
 
-        return view('katalog_filmow', ["katalogFilmow" => $filmy], ['katalogKategorie' => $kategorie]);
+        $koszyk_ilosc = $this->koszyk_zliczanie();
+
+        return view('katalog_filmow', ["katalogFilmow" => $filmy, 'katalogKategorie' => $kategorie, 'koszykIlosc' => $koszyk_ilosc]);
     }
 
     public function kategorie(Request $request)
@@ -30,10 +38,11 @@ class FilmyController extends Controller
                 $kategorie = App\Filmy::orderBy('kategoria', 'asc')->groupBy('kategoria')->get('kategoria');
             }
 
+            $koszyk_ilosc = $this->koszyk_zliczanie();
 
         }
 
-        return view('katalog_filmow', ["katalogFilmow" => $filmy], ['katalogKategorie' => $kategorie]);
+        return view('katalog_filmow', ["katalogFilmow" => $filmy, 'katalogKategorie' => $kategorie, 'koszykIlosc' => $koszyk_ilosc]);
 
     }
 
