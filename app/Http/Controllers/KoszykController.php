@@ -11,15 +11,28 @@ class KoszykController extends Controller
     {
         if ($request->id) {
             $film_id = $request->id;
+
             if (session()->exists('koszyk')) {
                 $koszyk_filmy = session()->get('koszyk');
-                array_push($koszyk_filmy, $film_id);
-                session()->put('koszyk', $koszyk_filmy);
+
+                $koszyk_produkt_duplikat = False;
+                foreach ($koszyk_filmy as $pozycja) {
+                    if ($pozycja == $film_id) {
+                        $koszyk_produkt_duplikat = True;
+                    }
+                }
+
+                if ($koszyk_produkt_duplikat == False) {
+                    array_push($koszyk_filmy, $film_id);
+                    session()->put('koszyk', $koszyk_filmy);
+                }
+
             } else {
                 $koszyk_filmy = [];
                 array_push($koszyk_filmy, $film_id);
                 session()->put('koszyk', $koszyk_filmy);
             }
+            print_r($koszyk_filmy);
         }
 
         return redirect('katalog_filmow');
