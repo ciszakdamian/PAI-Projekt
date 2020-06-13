@@ -18,6 +18,7 @@ class Filmy extends Migration
             $table->string('tytul', 255);
             $table->string('okladka', 255);
             $table->string('kategoria', 255);
+            $table->string('rezyser', 255);
             $table->integer('rok_produkcji');
             $table->text('opis_fabuly');
             $table->decimal('cena', 8, 2);
