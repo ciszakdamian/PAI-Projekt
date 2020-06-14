@@ -20,8 +20,8 @@ familijny, itd.), rok produkcji, opis fabuły, cena.
 
 
 ## Autorzy
-**Damian Ciszak** 
-**Sebastian Jankowiak**
+- **Damian Ciszak** 
+- **Sebastian Jankowiak**
 
 
 ### Wymagania
