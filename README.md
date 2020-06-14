@@ -1,11 +1,13 @@
 ## Projektowanie aplikacji internetowych - Projekt
-- Damian Ciszak 
-- Sebastian Jankowiak
+
+## Autorzy
+**Damian Ciszak** 
+**Sebastian Jankowiak**
 
 
 ### Wymagania
 - PHP => 7.3
-- Newer MariaDB or MySql 
+- Newer MariaDB or MySQL
 
 ### Uruchomienie w trybie dev:
 ```
@@ -17,3 +19,6 @@ php artisan migrate:fresh --seed
 php artisan serve
 ```
 
+![lista_filmow](https://raw.githubusercontent.com/ciszakdamian/PAI-Projekt/dev/readme-img/filmy_lista.png?token=AFPZD66USGPPW4OOK4J7WRK655DJW"lista_filmow")
+
+![koszyk](https://raw.githubusercontent.com/ciszakdamian/PAI-Projekt/dev/readme-img/koszyk.png?token=AFPZD6ZUMP43YVAJYXE7RDC655DM4"koszyk")
