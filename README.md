@@ -26,6 +26,7 @@ familijny, itd.), rok produkcji, opis fabuły, cena.
 
 ### Wymagania
 - PHP => 7.3
+- Composer
 - Newer MariaDB or MySQL
 
 ### Uruchomienie w trybie dev:
