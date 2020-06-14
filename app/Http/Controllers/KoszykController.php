@@ -7,6 +7,11 @@ use App;
 
 class KoszykController extends Controller
 {
+    /**
+     * Dodaje produkt do koszyka
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function dodaj(Request $request)
     {
         if ($request->id) {
@@ -37,6 +42,10 @@ class KoszykController extends Controller
         return redirect('katalog_filmow');
     }
 
+    /**
+     * Zwraca zawartosc koszyka
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function koszyk()
     {
         if (session()->has('koszyk')) {
@@ -67,6 +76,11 @@ class KoszykController extends Controller
 
     }
 
+    /**
+     * Usuwa produkty z koszyka
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function usun(Request $request)
     {
         if ($request->id) {
