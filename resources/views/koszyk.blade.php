@@ -292,7 +292,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if (count($koszykLista) > 0) 
+                    @if (isset($koszykLista) && count($koszykLista) > 0) 
                         @foreach($koszykLista as $film)
                             @foreach($film as $f)
                                 <tr>
